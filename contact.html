@@ -1,5 +1,3 @@
-<!-- SAVE THIS FILE AS : contact.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Contact Us | BALAJI NEXTGEN</title>
+<title>BALAJI NEXTGEN | CONTACT US</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -22,719 +20,507 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-
 background:
 linear-gradient(
 135deg,
-#f4f8ff 0%,
-#edf4ff 35%,
-#ffffff 65%,
-#f7fbff 100%
+#eef4ff,
+#f8fbff
 );
-
-color:#0f172a;
-
 overflow-x:hidden;
+color:#0f172a;
 }
-
-/* =========================================
-CONTAINER
-========================================= */
 
 .container{
-max-width:1400px;
+width:100%;
+max-width:1900px;
 margin:auto;
-padding:0 20px;
 }
 
-/* =========================================
+/* ===========================
 HEADER
-========================================= */
+=========================== */
 
-.top-header{
-
-background:#ffffff;
-
-padding:16px 0;
-
-border-bottom:
-1px solid #dbe4ef;
-
-position:sticky;
-top:0;
-
-z-index:1000;
-
-box-shadow:
-0 8px 25px rgba(15,23,42,0.05);
-}
-
-.header-flex{
-
+header{
+background:white;
+padding:12px 3%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:20px;
 flex-wrap:wrap;
+box-shadow:
+0 4px 20px rgba(0,0,0,0.08);
 }
 
 .logo-section{
-
 display:flex;
 align-items:center;
-gap:18px;
+gap:16px;
 }
 
-.logo{
-
-width:72px;
-height:72px;
-
+.logo-section img{
+width:78px;
+height:78px;
 border-radius:18px;
-
-background:#fff;
-
-padding:5px;
-
-object-fit:cover;
-
-border:
-1px solid rgba(37,99,235,0.12);
-
-box-shadow:
-0 14px 30px rgba(37,99,235,0.12);
+border:3px solid #dbeafe;
+padding:4px;
+background:white;
 }
 
 .logo-text h1{
+font-size:52px;
+font-weight:800;
+line-height:1;
+}
 
-font-size:32px;
-
-font-family:'Cinzel',serif;
-
-background:
-linear-gradient(
-135deg,
-#081224,
-#1d4ed8,
-#2563eb
-);
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.logo-text span{
+color:#2563eb;
 }
 
 .logo-text p{
-
-font-size:11px;
-
+font-size:12px;
 font-weight:700;
-
 letter-spacing:3px;
-
+margin-top:6px;
 color:#64748b;
-
-margin-top:8px;
 }
 
-/* =========================================
-BUTTONS
-========================================= */
-
-.header-right{
-
+.header-buttons{
 display:flex;
-gap:14px;
+gap:12px;
 flex-wrap:wrap;
 }
 
-.header-btn{
-
-padding:13px 26px;
-
-border-radius:12px;
-
-font-weight:700;
-
+.header-buttons a{
 text-decoration:none;
-
+padding:14px 24px;
+border-radius:14px;
+font-size:14px;
+font-weight:700;
+color:white;
 transition:0.3s;
 }
 
-.contact-btn{
-
-background:
-linear-gradient(
-135deg,
-#ef4444,
-#dc2626
-);
-
-color:#fff;
-}
-
-.demo-btn{
-
+.home-btn{
 background:
 linear-gradient(
 135deg,
 #2563eb,
 #38bdf8
 );
-
-color:#fff;
 }
 
-.header-btn:hover{
-
-transform:translateY(-3px);
-
-box-shadow:
-0 14px 30px rgba(15,23,42,0.12);
-}
-
-/* =========================================
-NAVBAR
-========================================= */
-
-.navbar{
-
-background:
-linear-gradient(
-90deg,
-#283593,
-#303f9f,
-#3949ab
-);
-
-position:sticky;
-
-top:106px;
-
-z-index:999;
-}
-
-.nav-menu{
-
-display:flex;
-
-justify-content:center;
-
-flex-wrap:wrap;
-}
-
-.nav-menu a{
-
-color:#ffffff;
-
-text-decoration:none;
-
-padding:20px 24px;
-
-display:block;
-
-font-weight:700;
-
-transition:0.3s;
-}
-
-.nav-menu a:hover{
-
-background:
-rgba(255,255,255,0.08);
-}
-
-/* =========================================
-HERO
-========================================= */
-
-.contact-hero{
-
-padding:100px 20px 80px;
-
-text-align:center;
-
+.demo-btn{
 background:
 linear-gradient(
 135deg,
-#eef4ff 0%,
-#ffffff 50%,
-#edf5ff 100%
+#ef4444,
+#f97316
 );
+}
 
-border-bottom:
-1px solid #dbe4ef;
+.login-btn{
+background:
+linear-gradient(
+135deg,
+#16a34a,
+#22c55e
+);
+}
+
+.header-buttons a:hover{
+transform:translateY(-4px);
+}
+
+/* ===========================
+NAVBAR
+=========================== */
+
+.navbar{
+background:
+linear-gradient(
+135deg,
+#1e3a8a,
+#2563eb
+);
+padding:18px 3%;
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.navbar a{
+text-decoration:none;
+color:white;
+font-size:17px;
+font-weight:700;
+transition:0.3s;
+}
+
+.navbar a:hover{
+color:#facc15;
+}
+
+/* ===========================
+HERO
+=========================== */
+
+.hero{
+padding:45px 3% 25px;
+text-align:center;
 }
 
 .hero-icon{
-
-width:70px;
-height:70px;
-
+width:85px;
+height:85px;
 margin:auto;
-
-border-radius:20px;
-
+border-radius:24px;
 background:#dbeafe;
-
-border:
-1px solid #93c5fd;
-
 display:flex;
-
-align-items:center;
 justify-content:center;
-
-font-size:32px;
-
-margin-bottom:24px;
+align-items:center;
+font-size:42px;
+margin-bottom:18px;
+color:#2563eb;
 }
 
 .hero-badge{
-
 display:inline-block;
-
-padding:9px 20px;
-
-border:
-1px solid #93c5fd;
-
-border-radius:30px;
-
+padding:11px 26px;
+background:#dbeafe;
+border-radius:50px;
 font-size:13px;
-
 font-weight:700;
-
 color:#2563eb;
-
-margin-bottom:22px;
-
-background:#dbeafe;
-}
-
-.contact-hero h1{
-
-font-size:64px;
-
-font-family:'Cinzel',serif;
-
-margin-bottom:20px;
-
-line-height:1.2;
-
-color:#081224;
-}
-
-.contact-hero h1 span{
-color:#2563eb;
-}
-
-.contact-hero p{
-
-max-width:850px;
-
-margin:auto;
-
-line-height:2;
-
-color:#475569;
-
-font-size:16px;
-}
-
-/* =========================================
-CONTACT SECTION
-========================================= */
-
-.contact-section{
-padding:90px 20px;
-}
-
-.contact-container{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:40px;
-
-align-items:start;
-}
-
-/* =========================================
-LEFT SIDE
-========================================= */
-
-.contact-left h2{
-
-font-size:42px;
-
-font-family:'Cinzel',serif;
-
-margin-bottom:25px;
-
-line-height:1.3;
-
-color:#081224;
-}
-
-.contact-left h2 span{
-color:#2563eb;
-}
-
-.contact-left p{
-
-line-height:2;
-
-color:#64748b;
-
-margin-bottom:35px;
-
-font-size:15px;
-}
-
-.contact-info{
-
-display:flex;
-
-flex-direction:column;
-
-gap:24px;
-}
-
-.info-box{
-
-display:flex;
-
-align-items:flex-start;
-
-gap:16px;
-
-background:#ffffff;
-
-padding:22px;
-
-border-radius:18px;
-
-border:
-1px solid #dbe4ef;
-
-box-shadow:
-0 12px 35px rgba(15,23,42,0.05);
-}
-
-.info-icon{
-
-width:52px;
-height:52px;
-
-border-radius:14px;
-
-background:#dbeafe;
-
-border:
-1px solid #93c5fd;
-
-display:flex;
-
-align-items:center;
-justify-content:center;
-
-font-size:20px;
-
-flex-shrink:0;
-}
-
-.info-text h3{
-
-font-size:14px;
-
-color:#2563eb;
-
-margin-bottom:6px;
-
-letter-spacing:1px;
-}
-
-.info-text p{
-
-margin:0;
-
-line-height:1.8;
-
-font-size:14px;
-
-color:#475569;
-}
-
-/* =========================================
-FORM
-========================================= */
-
-.contact-form{
-
-background:#ffffff;
-
-padding:35px;
-
-border-radius:24px;
-
-border:
-1px solid #dbe4ef;
-
-box-shadow:
-0 12px 35px rgba(15,23,42,0.05);
-}
-
-.contact-form h2{
-
-font-size:30px;
-
-font-family:'Cinzel',serif;
-
-margin-bottom:25px;
-
-color:#081224;
-}
-
-.contact-form h2 span{
-color:#2563eb;
-}
-
-.form-grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:18px;
-}
-
-.input-box{
 margin-bottom:18px;
 }
 
-.input-box label{
+.hero h2{
+font-size:64px;
+font-weight:800;
+margin-bottom:14px;
+}
 
-display:block;
-
-margin-bottom:9px;
-
-font-size:12px;
-
-font-weight:700;
-
+.hero h2 span{
 color:#2563eb;
+}
 
-letter-spacing:1px;
+.hero-subtitle{
+max-width:1500px;
+margin:auto;
+font-size:16px;
+line-height:1.8;
+color:#475569;
+}
+
+/* ===========================
+SERVICES
+=========================== */
+
+.services{
+padding:15px 3% 30px;
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(250px,1fr));
+gap:16px;
+}
+
+.service-card{
+background:white;
+padding:24px;
+border-radius:24px;
+box-shadow:
+0 10px 30px rgba(0,0,0,0.06);
+border:1px solid #dbeafe;
+transition:0.3s;
+}
+
+.service-card:hover{
+transform:translateY(-8px);
+}
+
+.service-icon{
+width:62px;
+height:62px;
+border-radius:18px;
+background:#dbeafe;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+margin-bottom:16px;
+}
+
+.service-card h3{
+font-size:24px;
+margin-bottom:10px;
+font-weight:800;
+}
+
+.service-card p{
+font-size:13px;
+line-height:1.8;
+color:#64748b;
+}
+
+/* ===========================
+CONTACT SECTION
+=========================== */
+
+.contact-section{
+padding:0 3% 35px;
+}
+
+.contact-wrapper{
+background:white;
+border-radius:32px;
+overflow:hidden;
+display:grid;
+grid-template-columns:0.9fr 1.1fr;
+box-shadow:
+0 20px 50px rgba(0,0,0,0.08);
+}
+
+/* LEFT */
+
+.left-panel{
+padding:40px;
+background:
+linear-gradient(
+135deg,
+#1e3a8a,
+#2563eb,
+#3b82f6
+);
+color:white;
+}
+
+.left-panel h3{
+font-size:34px;
+margin-bottom:16px;
+font-weight:800;
+}
+
+.left-panel p{
+font-size:14px;
+line-height:1.9;
+color:#dbeafe;
+margin-bottom:22px;
+}
+
+.features{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.feature{
+padding:14px 18px;
+background:rgba(255,255,255,0.12);
+border-radius:14px;
+font-size:14px;
+font-weight:600;
+}
+
+/* RIGHT */
+
+.right-panel{
+padding:40px;
+}
+
+.right-panel h2{
+font-size:42px;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.right-panel p{
+font-size:14px;
+line-height:1.8;
+color:#64748b;
+margin-bottom:24px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+}
+
+.input-box{
+display:flex;
+flex-direction:column;
+}
+
+.input-box.full{
+grid-column:1/3;
+}
+
+.input-box label{
+font-size:13px;
+font-weight:700;
+margin-bottom:7px;
 }
 
 .input-box input,
 .input-box select,
 .input-box textarea{
-
-width:100%;
-
 padding:15px;
-
-background:#f8fbff;
-
-border:
-1px solid #dbe4ef;
-
-border-radius:12px;
-
-color:#0f172a;
-
+border-radius:14px;
+border:1px solid #cbd5e1;
 font-size:14px;
-
 outline:none;
-
 transition:0.3s;
+}
+
+.input-box textarea{
+height:120px;
+resize:none;
 }
 
 .input-box input:focus,
 .input-box select:focus,
 .input-box textarea:focus{
-
 border-color:#2563eb;
-
 box-shadow:
-0 0 0 4px rgba(37,99,235,0.08);
-}
-
-.input-box textarea{
-
-height:120px;
-
-resize:none;
+0 0 0 4px rgba(37,99,235,0.10);
 }
 
 .submit-btn{
-
+margin-top:20px;
 width:100%;
-
-padding:16px;
-
+padding:18px;
 border:none;
-
-border-radius:14px;
-
+border-radius:16px;
 background:
 linear-gradient(
 135deg,
-#2563eb,
-#38bdf8
+#16a34a,
+#22c55e
 );
-
-color:#fff;
-
-font-size:15px;
-
-font-weight:700;
-
+font-size:16px;
+font-weight:800;
+color:white;
 cursor:pointer;
-
 transition:0.3s;
 }
 
 .submit-btn:hover{
-
-transform:translateY(-4px);
-
-box-shadow:
-0 14px 30px rgba(37,99,235,0.18);
+transform:translateY(-5px);
 }
 
-/* =========================================
-MAP
-========================================= */
-
-.map-section{
-padding:0 20px 80px;
-}
-
-.map-box{
-
-background:#ffffff;
-
-padding:20px;
-
-border-radius:24px;
-
-border:
-1px solid #dbe4ef;
-
-box-shadow:
-0 12px 35px rgba(15,23,42,0.05);
-}
-
-.map-box iframe{
-
-width:100%;
-
-height:350px;
-
-border:none;
-
-border-radius:18px;
-}
-
-/* =========================================
+/* ===========================
 FOOTER
-========================================= */
+=========================== */
 
 footer{
-
 background:
 linear-gradient(
-90deg,
-#283593,
-#303f9f,
-#3949ab
+135deg,
+#081224,
+#102c7a,
+#2563eb
 );
-
-padding:55px 20px;
-
-text-align:center;
+padding:42px 3% 20px;
+color:white;
 }
 
-footer h2{
+.footer-grid{
+display:grid;
+grid-template-columns:
+1.4fr 1fr 1fr;
+gap:24px;
+}
 
-font-size:34px;
+.footer-logo{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:18px;
+}
 
-font-family:'Cinzel',serif;
+.footer-logo img{
+width:58px;
+height:58px;
+border-radius:14px;
+background:white;
+padding:4px;
+}
 
-color:#ffffff;
+.footer-logo h2{
+font-size:30px;
+font-weight:800;
+}
 
+.footer-logo span{
+color:#60a5fa;
+}
+
+.footer-about{
+font-size:13px;
+line-height:1.9;
+color:#dbeafe;
+}
+
+.footer-links h3{
+font-size:20px;
 margin-bottom:14px;
 }
 
-footer p{
-
+.footer-links a{
+display:block;
+margin-bottom:10px;
+text-decoration:none;
 color:#dbeafe;
-
-line-height:2;
-
-font-size:14px;
+font-size:13px;
 }
 
-/* =========================================
-TABLET
-========================================= */
-
-@media(max-width:950px){
-
-.header-flex{
-flex-direction:column;
+.footer-bottom{
+margin-top:24px;
+padding-top:16px;
+border-top:
+1px solid rgba(255,255,255,0.12);
 text-align:center;
+font-size:12px;
+color:#dbeafe;
 }
 
-.navbar{
-top:165px;
-}
+/* ===========================
+RESPONSIVE
+=========================== */
 
-.contact-container{
+@media(max-width:1100px){
+
+.contact-wrapper{
 grid-template-columns:1fr;
 }
 
-.contact-hero h1{
-font-size:42px;
 }
 
-.contact-left h2{
-font-size:32px;
+@media(max-width:768px){
+
+.logo-text h1{
+font-size:34px;
+}
+
+.hero h2{
+font-size:42px;
 }
 
 .form-grid{
 grid-template-columns:1fr;
 }
 
-.nav-menu{
-justify-content:center;
+.input-box.full{
+grid-column:auto;
 }
 
+.footer-grid{
+grid-template-columns:1fr;
 }
 
-/* =========================================
-MOBILE
-========================================= */
-
-@media(max-width:600px){
-
-.contact-hero h1{
-font-size:34px;
-}
-
-.contact-left h2{
-font-size:28px;
-}
-
-.contact-form{
-padding:24px;
-}
-
-.map-box iframe{
-height:260px;
+.navbar{
+gap:18px;
 }
 
 }
@@ -745,246 +531,356 @@ height:260px;
 
 <body>
 
-<!-- HEADER -->
-
-<div class="top-header">
-
 <div class="container">
 
-<div class="header-flex">
+<header>
 
 <div class="logo-section">
 
-<img src="https://lh3.googleusercontent.com/d/1aqcY-aiq4n1g09OQNBN-Ove9n_lxiZPC" class="logo">
+<img src="https://lh3.googleusercontent.com/d/1aqcY-aiq4n1g09OQNBN-Ove9n_lxiZPC">
 
 <div class="logo-text">
 
-<h1>BALAJI NEXTGEN</h1>
+<h1>
+BALAJI <span>NEXTGEN</span>
+</h1>
 
-<p>ERP • AI • GST • EDUCATION</p>
+<p>
+ERP • AI • GST • ITR • EDUCATION
+</p>
 
 </div>
 
 </div>
 
-<div class="header-right">
+<div class="header-buttons">
 
-<a href="index.html" class="header-btn demo-btn">
-Home
+<a href="index.html" class="home-btn">
+🏠 Home
 </a>
 
-<a href="demo/register_demo.html" class="header-btn contact-btn">
-Start Demo
+<a href="register_demo.html" class="demo-btn">
+🚀 Start Demo
+</a>
+
+<a href="login.html" class="login-btn">
+🔐 ERP Login
 </a>
 
 </div>
 
-</div>
+</header>
 
-</div>
-
-</div>
-
-<!-- NAVBAR -->
-
-<div class="navbar">
-
-<div class="nav-menu">
+<nav class="navbar">
 
 <a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="software.html">ERP Solutions</a>
-<a href="education.html">Education</a>
-<a href="gst-services.html">GST Services</a>
-<a href="consultancy.html">Consultancy</a>
-<a href="ai-services.html">AI Services</a>
+<a href="#">About</a>
+<a href="#">ERP Solutions</a>
+<a href="#">Education</a>
+<a href="#">GST Services</a>
+<a href="#">Consultancy</a>
+<a href="#">AI Services</a>
 <a href="contact.html">Contact</a>
 
-</div>
+</nav>
 
-</div>
-
-<!-- HERO -->
-
-<section class="contact-hero">
+<section class="hero">
 
 <div class="hero-icon">
 📞
 </div>
 
 <div class="hero-badge">
-GET IN TOUCH
+PROFESSIONAL BUSINESS SUPPORT
 </div>
 
-<h1>
+<h2>
 CONTACT <span>US</span>
-</h1>
+</h2>
 
-<p>
+<p class="hero-subtitle">
 
-Have questions about ERP software,
-GST consultancy, AI automation,
-education courses or digital transformation solutions?
-Our expert team is ready to help your business grow.
+Professional ERP solutions for Restaurant,
+Retail,
+Inventory,
+GST Filing,
+ITR Filing,
+AI Automation,
+POS Billing,
+Accounting,
+Education,
+Website Development and Multi Branch Business Management.
 
 </p>
 
 </section>
 
-<!-- CONTACT -->
+<section class="services">
+
+<div class="service-card">
+
+<div class="service-icon">🍽</div>
+
+<h3>Restaurant ERP</h3>
+
+<p>
+POS Billing,
+KOT,
+Kitchen Display,
+Table Management,
+Recipe Costing and Restaurant Automation.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">📦</div>
+
+<h3>Inventory ERP</h3>
+
+<p>
+Warehouse,
+Stock,
+Purchase,
+GRN,
+Barcode and Multi Branch Inventory Management.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">💰</div>
+
+<h3>GST & ITR</h3>
+
+<p>
+GST Filing,
+Income Tax,
+TDS,
+Accounting,
+Payroll and Tax Consultancy Services.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">🤖</div>
+
+<h3>AI Automation</h3>
+
+<p>
+Business AI,
+Realtime Analytics,
+Forecasting,
+Smart Alerts and Enterprise Automation.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">🎓</div>
+
+<h3>Education</h3>
+
+<p>
+Tally,
+GST,
+Excel,
+ERP,
+AI,
+Accounts and Professional Software Training.
+</p>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">🌐</div>
+
+<h3>Website Development</h3>
+
+<p>
+Business Websites,
+ERP Frontend,
+Cloud Hosting and Mobile Responsive Systems.
+</p>
+
+</div>
+
+</section>
 
 <section class="contact-section">
 
-<div class="container">
+<div class="contact-wrapper">
 
-<div class="contact-container">
+<div class="left-panel">
 
-<!-- LEFT -->
+<h3>
+Professional Business Support
+</h3>
 
-<div class="contact-left">
+<p>
+
+BALAJI NEXTGEN provides enterprise ERP,
+AI Automation,
+GST Filing,
+Inventory ERP,
+POS Billing,
+Cloud ERP,
+Education and Business Digitalization solutions.
+
+</p>
+
+<div class="features">
+
+<div class="feature">
+✅ Cloud ERP & Multi Branch Control
+</div>
+
+<div class="feature">
+✅ GST Billing & Accounting
+</div>
+
+<div class="feature">
+✅ AI Analytics & Automation
+</div>
+
+<div class="feature">
+✅ Mobile ERP & Live Monitoring
+</div>
+
+<div class="feature">
+✅ Retail + Restaurant ERP
+</div>
+
+<div class="feature">
+✅ Forecasting Dashboard & Reporting
+</div>
+
+</div>
+
+</div>
+
+<div class="right-panel">
 
 <h2>
-LET'S <span>TALK BUSINESS</span>
+Send Inquiry
 </h2>
 
 <p>
 
-Whether you're a student learning Tally,
-a retailer needing POS software,
-or a business looking for complete ERP automation —
-BALAJI NEXTGEN provides the right solution.
+Fill all details properly to activate professional support.
 
 </p>
 
-<div class="contact-info">
-
-<div class="info-box">
-
-<div class="info-icon">📧</div>
-
-<div class="info-text">
-
-<h3>EMAIL US</h3>
-
-<p>balajieducationhub12@gmail.com</p>
-
-</div>
-
-</div>
-
-<div class="info-box">
-
-<div class="info-icon">📍</div>
-
-<div class="info-text">
-
-<h3>LOCATION</h3>
-
-<p>India</p>
-
-</div>
-
-</div>
-
-<div class="info-box">
-
-<div class="info-icon">▶</div>
-
-<div class="info-text">
-
-<h3>YOUTUBE CHANNEL</h3>
-
-<p>
-https://www.youtube.com/@Balajieducationhub12
-</p>
-
-</div>
-
-</div>
-
-<div class="info-box">
-
-<div class="info-icon">💬</div>
-
-<div class="info-text">
-
-<h3>WHATSAPP SUPPORT</h3>
-
-<p>Monday – Saturday, 9AM – 7PM</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- FORM -->
-
-<div class="contact-form">
-
-<h2>
-SEND A <span>MESSAGE</span>
-</h2>
-
-<form>
+<form
+id="contactForm"
+onsubmit="event.preventDefault(); submitContactForm();">
 
 <div class="form-grid">
 
 <div class="input-box">
 
-<label>YOUR NAME</label>
+<label>
+Full Name
+</label>
 
-<input type="text" placeholder="Full Name">
-
-</div>
-
-<div class="input-box">
-
-<label>PHONE / WHATSAPP</label>
-
-<input type="text" placeholder="+91 XXXXXXXXXX">
-
-</div>
+<input
+type="text"
+id="name"
+required
+placeholder="Enter Full Name">
 
 </div>
 
 <div class="input-box">
 
-<label>EMAIL ADDRESS</label>
+<label>
+Company Name
+</label>
 
-<input type="email" placeholder="your@email.com">
+<input
+type="text"
+id="company"
+placeholder="Enter Company Name">
 
 </div>
 
 <div class="input-box">
 
-<label>SERVICE</label>
+<label>
+Email Address
+</label>
 
-<select>
+<input
+type="email"
+id="email"
+required
+placeholder="your@email.com">
 
-<option>Select a Service</option>
-<option>ERP Software</option>
-<option>GST Consultancy</option>
-<option>POS Billing</option>
-<option>Education Courses</option>
+</div>
+
+<div class="input-box">
+
+<label>
+Mobile Number
+</label>
+
+<input
+type="tel"
+id="mobile"
+required
+placeholder="+91 XXXXXXXXXX">
+
+</div>
+
+<div class="input-box full">
+
+<label>
+Select Service
+</label>
+
+<select id="service">
+
+<option>Restaurant ERP</option>
+<option>Inventory ERP</option>
+<option>GST & ITR Filing</option>
+<option>Accounting ERP</option>
+<option>Retail POS ERP</option>
+<option>AI Automation</option>
 <option>Website Development</option>
+<option>Education & Training</option>
 
 </select>
 
 </div>
 
-<div class="input-box">
+<div class="input-box full">
 
-<label>MESSAGE</label>
+<label>
+Business Requirement
+</label>
 
-<textarea placeholder="Tell us about your business requirements..."></textarea>
+<textarea
+id="message"
+required
+placeholder="Explain your business requirement..."></textarea>
 
 </div>
 
-<button type="submit" class="submit-btn">
-SEND MESSAGE →
+</div>
+
+<button
+type="submit"
+id="contactSubmitBtn"
+class="submit-btn">
+
+💬 Submit & Activate Support
+
 </button>
 
 </form>
@@ -993,54 +889,87 @@ SEND MESSAGE →
 
 </div>
 
-</div>
-
 </section>
-
-<!-- MAP -->
-
-<section class="map-section">
-
-<div class="container">
-
-<div class="map-box">
-
-<iframe src="https://maps.google.com/maps?q=India&t=&z=4&ie=UTF8&iwloc=&output=embed"></iframe>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- FOOTER -->
 
 <footer>
 
-<h2>BALAJI NEXTGEN</h2>
+<div class="footer-grid">
 
-<p>
-ERP • AI • GST • POS • EDUCATION • CLOUD
-</p>
+<div>
 
-<p style="margin-top:16px;">
+<div class="footer-logo">
 
-📧 balajieducationhub12@gmail.com
+<img src="https://lh3.googleusercontent.com/d/1aqcY-aiq4n1g09OQNBN-Ove9n_lxiZPC">
 
-</p>
+<div>
 
-<p>
+<h2>
+BALAJI <span>NEXTGEN</span>
+</h2>
 
-▶ https://www.youtube.com/@Balajieducationhub12
+</div>
 
-</p>
+</div>
 
-<p style="margin-top:14px;">
-Powered by Balaji NextGen Solutions, India.
-</p>
+<div class="footer-about">
+
+Professional ERP,
+AI Automation,
+Inventory,
+POS Billing,
+GST Filing,
+Website Development and Business Digitalization Solutions.
+
+</div>
+
+</div>
+
+<div class="footer-links">
+
+<h3>
+Quick Links
+</h3>
+
+<a href="index.html">🏠 Home</a>
+<a href="register_demo.html">🚀 Register Demo</a>
+<a href="login.html">🔐 ERP Login</a>
+
+</div>
+
+<div class="footer-links">
+
+<h3>
+Official Links
+</h3>
+
+<a href="https://www.youtube.com/@Balajieducationhub12" target="_blank">
+▶ YouTube Channel
+</a>
+
+<a href="https://nextgenbalajierp.netlify.app" target="_blank">
+🌐 Official Website
+</a>
+
+<a href="mailto:balajieducationhub12@gmail.com">
+📧 Email Support
+</a>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+© 2026 BALAJI NEXTGEN SOLUTIONS • ALL RIGHTS RESERVED
+
+</div>
 
 </footer>
 
-</body>
+</div>
 
+<script src="js/api/api-engine.js"></script>
+
+</body>
 </html>
+```
