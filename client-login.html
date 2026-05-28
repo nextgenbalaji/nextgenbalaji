@@ -181,10 +181,6 @@ justify-content:flex-start;
 overflow-y:auto;
 }
 
-/* =====================================================
-TOP BUTTONS
-===================================================== */
-
 .top-buttons{
 display:flex;
 gap:12px;
@@ -230,16 +226,11 @@ transform:translateY(-2px);
 box-shadow:0 10px 20px rgba(0,0,0,.12);
 }
 
-/* =====================================================
-TEXT
-===================================================== */
-
 .welcome{
 font-size:48px;
 font-weight:800;
 line-height:52px;
 color:#0f172a;
-margin-top:0;
 }
 
 .welcome span{
@@ -275,10 +266,6 @@ border-radius:14px;
 font-size:12px;
 font-weight:700;
 }
-
-/* =====================================================
-FORM
-===================================================== */
 
 .group{
 margin-bottom:16px;
@@ -404,51 +391,11 @@ align-items:center;
 font-size:22px;
 }
 
-.security-box h4{
-font-size:15px;
-margin-bottom:4px;
-color:#0f172a;
-}
-
-.security-box p{
-font-size:13px;
-color:#64748b;
-line-height:20px;
-}
-
 .footer{
 margin-top:22px;
 text-align:center;
 font-size:13px;
 color:#64748b;
-}
-
-/* =====================================================
-RESPONSIVE
-===================================================== */
-
-@media(max-width:1100px){
-
-body{
-height:auto;
-overflow:auto;
-}
-
-.container{
-height:auto;
-flex-direction:column;
-}
-
-.left,
-.right{
-width:100%;
-padding:28px;
-}
-
-.feature-grid{
-grid-template-columns:1fr;
-}
-
 }
 
 </style>
@@ -458,10 +405,6 @@ grid-template-columns:1fr;
 <body>
 
 <div class="container">
-
-<!-- =====================================================
-LEFT
-===================================================== -->
 
 <div class="left">
 
@@ -522,10 +465,6 @@ Professional ERP ecosystem for Restaurant, Retail, Inventory, Accounts, GST, HR,
 
 </div>
 
-<!-- =====================================================
-RIGHT
-===================================================== -->
-
 <div class="right">
 
 <div class="top-buttons">
@@ -573,7 +512,7 @@ Secure access to your ERP workspace
 
 <input
 type="text"
-id="username"
+id="loginId"
 placeholder="Enter Email or Mobile">
 
 </div>
@@ -626,8 +565,8 @@ Forgot Password?
 </div>
 
 <button
-type="button"
 class="login-btn"
+id="loginBtn"
 onclick="loginERP()">
 
 🔐 LOGIN TO ERP
@@ -672,11 +611,26 @@ Your session is encrypted and protected.
 
 <script>
 
+/* =====================================================
+AUTH API
+===================================================== */
+
+const AUTH_API =
+"https://script.google.com/macros/s/AKfycbxYC6C21trcupaExLJ1voJkISnAtggE2P-o2KUupn1TaFhI4I2h0eq7cC9Q9ceFRoy/exec";
+
+/* =====================================================
+MAIN WEBSITE
+===================================================== */
+
 function goWebsite(){
 
 window.location.href='index.html';
 
 }
+
+/* =====================================================
+SHOW PASSWORD
+===================================================== */
 
 function togglePassword(){
 
@@ -692,6 +646,224 @@ pass.type === 'password'
 
 }
 
+/* =====================================================
+LOGIN FUNCTION
+===================================================== */
+
+async function loginERP(){
+
+try{
+
+const loginId =
+document
+.getElementById("loginId")
+.value
+.trim();
+
+const password =
+document
+.getElementById("password")
+.value
+.trim();
+
+/* =====================================================
+VALIDATION
+===================================================== */
+
+if(!loginId || !password){
+
+alert(
+"ENTER LOGIN DETAILS"
+);
+
+return;
+
+}
+
+/* =====================================================
+BUTTON
+===================================================== */
+
+const btn =
+document.getElementById("loginBtn");
+
+btn.innerHTML =
+"CHECKING LOGIN...";
+
+btn.disabled = true;
+
+/* =====================================================
+API CALL
+===================================================== */
+
+const response =
+await fetch(
+AUTH_API,
+{
+method:"POST",
+headers:{
+"Content-Type":"text/plain"
+},
+body:JSON.stringify({
+
+action:"LOGIN",
+
+loginId:loginId,
+
+password:password
+
+})
+}
+);
+
+/* =====================================================
+RESULT
+===================================================== */
+
+const result =
+await response.json();
+
+console.log(result);
+
+/* =====================================================
+SUCCESS
+===================================================== */
+
+if(result.success === true){
+
+localStorage.setItem(
+"BALAJI_USER",
+JSON.stringify(result.user)
+);
+
+alert(
+"LOGIN SUCCESS"
+);
+
+/* =====================================================
+ROLE BASED DASHBOARD
+===================================================== */
+
+const role =
+String(
+result.user.role || ""
+).toUpperCase();
+
+/* =====================================================
+SUPER ADMIN
+===================================================== */
+
+if(role === "SUPER_ADMIN"){
+
+window.location.href =
+"super-admin-dashboard.html";
+
+}
+
+/* =====================================================
+DEVELOPER
+===================================================== */
+
+else if(role === "DEVELOPER"){
+
+window.location.href =
+"developer-dashboard.html";
+
+}
+
+/* =====================================================
+OWNER
+===================================================== */
+
+else if(role === "OWNER"){
+
+window.location.href =
+"owner-dashboard.html";
+
+}
+
+/* =====================================================
+CASHIER
+===================================================== */
+
+else if(role === "CASHIER"){
+
+window.location.href =
+"cashier-dashboard.html";
+
+}
+
+/* =====================================================
+CHEF
+===================================================== */
+
+else if(role === "CHEF"){
+
+window.location.href =
+"kitchen-dashboard.html";
+
+}
+
+/* =====================================================
+DEFAULT
+===================================================== */
+
+else{
+
+window.location.href =
+"dashboard.html";
+
+}
+
+}
+
+/* =====================================================
+FAILED LOGIN
+===================================================== */
+
+else{
+
+alert(
+result.message ||
+"INVALID LOGIN"
+);
+
+}
+
+/* =====================================================
+RESET BUTTON
+===================================================== */
+
+btn.innerHTML =
+"🔐 LOGIN TO ERP";
+
+btn.disabled = false;
+
+}
+catch(error){
+
+console.log(error);
+
+alert(
+"SERVER CONNECTION FAILED"
+);
+
+const btn =
+document.getElementById("loginBtn");
+
+btn.innerHTML =
+"🔐 LOGIN TO ERP";
+
+btn.disabled = false;
+
+}
+
+}
+
+/* =====================================================
+OTP LOGIN
+===================================================== */
+
 function openOTPLogin(){
 
 alert(
@@ -699,6 +871,10 @@ alert(
 );
 
 }
+
+/* =====================================================
+FORGOT PASSWORD
+===================================================== */
 
 function openForgotPassword(){
 
@@ -709,8 +885,6 @@ alert(
 }
 
 </script>
-
-<script src="js/api/api-engine.js"></script>
 
 </body>
 </html>

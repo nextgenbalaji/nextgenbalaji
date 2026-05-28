@@ -1,33 +1,42 @@
-```javascript
 /* =====================================================
-   BALAJI NEXTGEN ERP
-   FINAL API ENGINE
-   FILE:
-   js/api/api-engine.js
+BALAJI NEXTGEN ERP
+api-engine.js
+FINAL FIXED VERSION
 ===================================================== */
 
-console.log(
-"BALAJI NEXTGEN ERP API ENGINE LOADED"
-);
-
 /* =====================================================
-   MASTER REGISTRY
-===================================================== */
-
-const MASTER_SHEET_URL =
-"https://docs.google.com/spreadsheets/d/1FuNJ_XejE2ekYTnk71wXVZ79hRJgu7pmIA6fuE-Iu7I/gviz/tq?tqx=out:json&sheet=API_DEPLOYMENT_REGISTRY";
-
-/* =====================================================
-   API VARIABLES
+GLOBAL API VARIABLES
 ===================================================== */
 
 let AUTH_API = "";
 let CORE_API = "";
-let FRONTEND_API = "";
-let WEBSITE_API = "";
 
 /* =====================================================
-   LOAD API REGISTRY
+SHOW MESSAGE FUNCTION
+===================================================== */
+
+function showMessage(message,type="info"){
+
+if(type === "success"){
+
+alert(message);
+
+}
+else if(type === "error"){
+
+alert(message);
+
+}
+else{
+
+alert(message);
+
+}
+
+}
+
+/* =====================================================
+LOAD API REGISTRY
 ===================================================== */
 
 async function loadAPIRegistry(){
@@ -38,105 +47,73 @@ console.log(
 "LOADING ERP API REGISTRY..."
 );
 
+const sheetURL =
+"https://opensheet.elk.sh/1FuNJ_XejE2ekYTnk71wXVZ79hRJgu7pmIA6fuE-Iu7I/API_DEPLOYMENT_REGISTRY";
+
 const response =
-await fetch(
-MASTER_SHEET_URL
-);
+await fetch(sheetURL);
 
-const text =
-await response.text();
-
-const json =
-JSON.parse(
-text.substring(47).slice(0,-2)
-);
-
-const rows =
-json.table.rows;
-
-/* =====================================================
-   LOOP ROWS
-===================================================== */
-
-rows.forEach(row=>{
-
-const appName =
-row.c[0]?.v || "";
-
-const webAppUrl =
-row.c[1]?.v || "";
-
-const status =
-row.c[3]?.v || "";
-
-if(status !== "ACTIVE"){
-return;
-}
-
-/* =====================================================
-   MAP APIS
-===================================================== */
-
-if(appName === "V2_AUTH"){
-
-AUTH_API = webAppUrl;
+const data =
+await response.json();
 
 console.log(
-"AUTH API:",
+"REGISTRY DATA:",
+data
+);
+
+/* =====================================================
+FIND AUTH API
+===================================================== */
+
+const authRow =
+data.find(row =>
+String(row.APP_NAME).trim() === "V2_AUTH"
+);
+
+if(authRow){
+
+AUTH_API =
+String(authRow.WEBAPP_URL).trim();
+
+console.log(
+"AUTH API FOUND:",
 AUTH_API
 );
 
 }
 
-if(appName === "V2_CORE"){
+/* =====================================================
+FIND CORE API
+===================================================== */
 
-CORE_API = webAppUrl;
+const coreRow =
+data.find(row =>
+String(row.APP_NAME).trim() === "V2_CORE"
+);
+
+if(coreRow){
+
+CORE_API =
+String(coreRow.WEBAPP_URL).trim();
 
 console.log(
-"CORE API:",
+"CORE API FOUND:",
 CORE_API
 );
 
 }
 
-if(appName === "V2_FRONTEND"){
-
-FRONTEND_API = webAppUrl;
-
-console.log(
-"FRONTEND API:",
-FRONTEND_API
-);
-
-}
-
-if(appName === "Webside"){
-
-WEBSITE_API = webAppUrl;
-
-console.log(
-"WEBSITE API:",
-WEBSITE_API
-);
-
-}
-
-});
-
-console.log(
-"API REGISTRY LOADED SUCCESSFULLY"
-);
-
 }
 catch(error){
 
-console.error(
+console.log(
 "API REGISTRY ERROR:",
 error
 );
 
-alert(
-"API REGISTRY LOAD FAILED"
+showMessage(
+"API REGISTRY LOAD FAILED",
+"error"
 );
 
 }
@@ -144,13 +121,7 @@ alert(
 }
 
 /* =====================================================
-   AUTO LOAD REGISTRY
-===================================================== */
-
-loadAPIRegistry();
-
-/* =====================================================
-   LOGIN ERP
+LOGIN FUNCTION
 ===================================================== */
 
 async function loginERP(){
@@ -158,180 +129,118 @@ async function loginERP(){
 try{
 
 /* =====================================================
-   INPUT VALUES
-===================================================== */
-
-const usernameInput =
-document.getElementById("username");
-
-const passwordInput =
-document.getElementById("password");
-
-const loginBtn =
-document.getElementById("loginBtn");
-
-/* =====================================================
-   CHECK INPUTS
-===================================================== */
-
-if(!usernameInput){
-
-alert(
-"USERNAME INPUT NOT FOUND"
-);
-
-return;
-
-}
-
-if(!passwordInput){
-
-alert(
-"PASSWORD INPUT NOT FOUND"
-);
-
-return;
-
-}
-
-/* =====================================================
-   GET VALUES
+INPUT VALUES
 ===================================================== */
 
 const username =
-usernameInput.value.trim();
+document
+.getElementById("username")
+.value
+.trim();
 
 const password =
-passwordInput.value.trim();
+document
+.getElementById("password")
+.value
+.trim();
 
 /* =====================================================
-   VALIDATION
+VALIDATION
 ===================================================== */
 
-if(username === ""){
+if(!username || !password){
 
-alert(
-"ENTER USERNAME"
+showMessage(
+"ENTER LOGIN DETAILS",
+"error"
 );
 
 return;
 
 }
 
-if(password === ""){
-
-alert(
-"ENTER PASSWORD"
-);
-
-return;
-
-}
-
 /* =====================================================
-   BUTTON LOADING
-===================================================== */
-
-if(loginBtn){
-
-loginBtn.disabled = true;
-
-loginBtn.innerHTML =
-"CHECKING LOGIN...";
-
-}
-
-/* =====================================================
-   API CHECK
+CHECK API
 ===================================================== */
 
 if(!AUTH_API){
 
-alert(
-"AUTH API NOT LOADED"
+showMessage(
+"AUTH API NOT FOUND",
+"error"
 );
-
-if(loginBtn){
-
-loginBtn.disabled = false;
-
-loginBtn.innerHTML =
-"🔐 LOGIN TO ERP";
-
-}
 
 return;
 
 }
 
 /* =====================================================
-   PAYLOAD
+BUTTON LOADING
 ===================================================== */
 
-const payload = {
+const btn =
+document.getElementById("loginBtn");
 
-action : "LOGIN",
+btn.innerHTML =
+"CHECKING LOGIN...";
 
-username : username,
-
-password : password
-
-};
-
-console.log(
-"LOGIN PAYLOAD:",
-payload
-);
+btn.disabled = true;
 
 /* =====================================================
-   FETCH LOGIN
+API REQUEST
 ===================================================== */
 
 const response =
-await fetch(AUTH_API,{
-
-method : "POST",
-
-headers : {
-"Content-Type" : "text/plain;charset=utf-8"
+await fetch(
+AUTH_API,
+{
+method:"POST",
+headers:{
+"Content-Type":"text/plain"
 },
+body:JSON.stringify({
 
-body : JSON.stringify(payload)
+action:"LOGIN",
 
-});
+username:username,
+
+password:password
+
+})
+}
+);
 
 /* =====================================================
-   JSON RESPONSE
+RESPONSE JSON
 ===================================================== */
 
 const result =
 await response.json();
 
 console.log(
-"LOGIN RESPONSE:",
+"API RESPONSE:",
 result
 );
 
 /* =====================================================
-   LOGIN SUCCESS
+LOGIN SUCCESS
 ===================================================== */
 
 if(result.success === true){
 
+showMessage(
+"LOGIN SUCCESS",
+"success"
+);
+
 /* =====================================================
-   SAVE USER
+SAVE SESSION
 ===================================================== */
 
 localStorage.setItem(
 "BALAJI_USER",
-JSON.stringify(
-result.user || {}
-)
+JSON.stringify(result.user || {})
 );
-
-/* =====================================================
-   SAVE TOKEN
-===================================================== */
 
 localStorage.setItem(
 "BALAJI_TOKEN",
@@ -339,285 +248,67 @@ result.token || ""
 );
 
 /* =====================================================
-   SUCCESS MESSAGE
+OPEN DASHBOARD
 ===================================================== */
 
-alert(
-"LOGIN SUCCESS"
-);
-
-/* =====================================================
-   REDIRECT
-===================================================== */
+setTimeout(function(){
 
 window.location.href =
-"/dashboard.html";
+"dashboard.html";
+
+},1000);
 
 }
-
-/* =====================================================
-   LOGIN FAILED
-===================================================== */
-
 else{
 
-alert(
+showMessage(
 result.message ||
-"INVALID USERNAME OR PASSWORD"
+"INVALID USERNAME OR PASSWORD",
+"error"
 );
 
 }
 
 /* =====================================================
-   BUTTON RESET
+BUTTON RESET
 ===================================================== */
 
-if(loginBtn){
-
-loginBtn.disabled = false;
-
-loginBtn.innerHTML =
+btn.innerHTML =
 "🔐 LOGIN TO ERP";
 
-}
+btn.disabled = false;
 
 }
 catch(error){
 
-console.error(
+console.log(
 "LOGIN ENGINE ERROR:",
 error
 );
 
-alert(
-"SERVER CONNECTION FAILED"
+showMessage(
+"SERVER CONNECTION FAILED",
+"error"
 );
 
-const loginBtn =
+const btn =
 document.getElementById("loginBtn");
 
-if(loginBtn){
-
-loginBtn.disabled = false;
-
-loginBtn.innerHTML =
+btn.innerHTML =
 "🔐 LOGIN TO ERP";
 
-}
+btn.disabled = false;
 
 }
 
 }
 
 /* =====================================================
-   SEND OTP
+AUTO LOAD APIs
 ===================================================== */
 
-async function sendOTP(mobile){
+window.onload = function(){
 
-try{
+loadAPIRegistry();
 
-if(!AUTH_API){
-
-alert(
-"AUTH API NOT LOADED"
-);
-
-return;
-
-}
-
-const response =
-await fetch(AUTH_API,{
-
-method : "POST",
-
-headers : {
-"Content-Type" : "text/plain;charset=utf-8"
-},
-
-body : JSON.stringify({
-
-action : "SEND_OTP",
-
-mobile : mobile
-
-})
-
-});
-
-const result =
-await response.json();
-
-console.log(
-"OTP RESPONSE:",
-result
-);
-
-if(result.success){
-
-alert(
-"OTP SENT SUCCESSFULLY"
-);
-
-}else{
-
-alert(
-result.message ||
-"OTP SEND FAILED"
-);
-
-}
-
-}
-catch(error){
-
-console.error(error);
-
-alert(
-"OTP SERVER ERROR"
-);
-
-}
-
-}
-
-/* =====================================================
-   VERIFY OTP
-===================================================== */
-
-async function verifyOTP(mobile,otp){
-
-try{
-
-const response =
-await fetch(AUTH_API,{
-
-method : "POST",
-
-headers : {
-"Content-Type" : "text/plain;charset=utf-8"
-},
-
-body : JSON.stringify({
-
-action : "VERIFY_OTP",
-
-mobile : mobile,
-
-otp : otp
-
-})
-
-});
-
-const result =
-await response.json();
-
-console.log(
-"VERIFY OTP RESPONSE:",
-result
-);
-
-if(result.success){
-
-localStorage.setItem(
-"BALAJI_USER",
-JSON.stringify(
-result.user || {}
-)
-);
-
-localStorage.setItem(
-"BALAJI_TOKEN",
-result.token || ""
-);
-
-window.location.href =
-"/dashboard.html";
-
-}else{
-
-alert(
-"INVALID OTP"
-);
-
-}
-
-}
-catch(error){
-
-console.error(error);
-
-alert(
-"OTP VERIFY ERROR"
-);
-
-}
-
-}
-
-/* =====================================================
-   GET CURRENT USER
-===================================================== */
-
-function getCurrentUser(){
-
-const user =
-localStorage.getItem(
-"BALAJI_USER"
-);
-
-if(user){
-
-return JSON.parse(user);
-
-}
-
-return null;
-
-}
-
-/* =====================================================
-   CHECK LOGIN SESSION
-===================================================== */
-
-function checkLoginSession(){
-
-const token =
-localStorage.getItem(
-"BALAJI_TOKEN"
-);
-
-if(!token){
-
-window.location.href =
-"/client-login.html";
-
-return false;
-
-}
-
-return true;
-
-}
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-function logoutERP(){
-
-localStorage.removeItem(
-"BALAJI_USER"
-);
-
-localStorage.removeItem(
-"BALAJI_TOKEN"
-);
-
-window.location.href =
-"/client-login.html";
-
-}
-```
+};
