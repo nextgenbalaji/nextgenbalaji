@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,18 +17,6 @@ BALAJI NEXTGEN ERP LOGIN
 <link
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
 rel="stylesheet">
-
-<link
-rel="manifest"
-href="/manifest.json">
-
-<meta
-name="theme-color"
-content="#1e3a8a">
-
-<link
-rel="icon"
-href="logo.png">
 
 <style>
 
@@ -60,15 +49,16 @@ min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:25px;
+padding:20px;
 overflow-x:hidden;
 }
 
 .container{
 width:100%;
-max-width:1600px;
+max-width:1450px;
+min-height:92vh;
 background:white;
-border-radius:36px;
+border-radius:30px;
 overflow:hidden;
 display:flex;
 box-shadow:0 20px 60px rgba(0,0,0,.12);
@@ -79,8 +69,8 @@ LEFT SIDE
 ===================================================== */
 
 .left{
-width:55%;
-padding:55px;
+width:52%;
+padding:45px;
 background:
 linear-gradient(
 135deg,
@@ -89,19 +79,22 @@ linear-gradient(
 #1e3a8a
 );
 color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
 .logo-section{
 display:flex;
 align-items:center;
 gap:20px;
-margin-bottom:40px;
+margin-bottom:35px;
 }
 
 .logo{
-width:120px;
-height:120px;
-border-radius:28px;
+width:100px;
+height:100px;
+border-radius:24px;
 background:rgba(255,255,255,.08);
 display:flex;
 justify-content:center;
@@ -110,12 +103,12 @@ overflow:hidden;
 }
 
 .logo img{
-width:90px;
+width:75px;
 }
 
 .logo-title h1{
-font-size:72px;
-line-height:72px;
+font-size:56px;
+line-height:58px;
 font-weight:800;
 }
 
@@ -124,36 +117,36 @@ color:#ef4444;
 }
 
 .logo-title p{
-margin-top:10px;
+margin-top:8px;
 letter-spacing:2px;
 font-size:13px;
 color:#cbd5e1;
 }
 
 .big-title{
-font-size:42px;
+font-size:38px;
 font-weight:800;
-line-height:58px;
-margin-bottom:25px;
+line-height:52px;
+margin-bottom:22px;
 }
 
 .description{
-font-size:18px;
-line-height:34px;
+font-size:17px;
+line-height:30px;
 color:#dbeafe;
-margin-bottom:40px;
+margin-bottom:35px;
 }
 
 .feature-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:20px;
+gap:18px;
 }
 
 .feature-card{
 background:rgba(255,255,255,.08);
-padding:24px;
-border-radius:24px;
+padding:22px;
+border-radius:22px;
 transition:.3s;
 }
 
@@ -163,13 +156,13 @@ background:rgba(255,255,255,.12);
 }
 
 .feature-card h3{
-font-size:22px;
+font-size:20px;
 margin-bottom:10px;
 }
 
 .feature-card p{
 font-size:14px;
-line-height:26px;
+line-height:24px;
 color:#dbeafe;
 }
 
@@ -178,8 +171,8 @@ RIGHT SIDE
 ===================================================== */
 
 .right{
-width:45%;
-padding:55px;
+width:48%;
+padding:45px;
 background:white;
 display:flex;
 flex-direction:column;
@@ -188,13 +181,13 @@ justify-content:center;
 
 .top-buttons{
 display:flex;
-gap:15px;
-margin-bottom:35px;
+gap:14px;
+margin-bottom:28px;
 }
 
 .top-buttons button{
 flex:1;
-padding:18px;
+padding:16px;
 border:none;
 border-radius:18px;
 font-size:15px;
@@ -223,9 +216,9 @@ transform:translateY(-2px);
 }
 
 .welcome{
-font-size:64px;
+font-size:48px;
 font-weight:800;
-line-height:64px;
+line-height:52px;
 color:#0f172a;
 }
 
@@ -234,24 +227,24 @@ color:#ef4444;
 }
 
 .sub{
-margin-top:15px;
-font-size:18px;
+margin-top:12px;
+font-size:16px;
 color:#64748b;
 }
 
 .line{
-width:120px;
-height:6px;
+width:110px;
+height:5px;
 background:#ef4444;
 border-radius:20px;
-margin:30px 0;
+margin:24px 0;
 }
 
 .trust-bar{
 display:flex;
 flex-wrap:wrap;
-gap:12px;
-margin-bottom:28px;
+gap:10px;
+margin-bottom:24px;
 }
 
 .trust-bar div{
@@ -259,7 +252,7 @@ background:#eff6ff;
 color:#1d4ed8;
 padding:10px 14px;
 border-radius:14px;
-font-size:13px;
+font-size:12px;
 font-weight:700;
 }
 
@@ -268,23 +261,23 @@ FORM
 ===================================================== */
 
 .group{
-margin-bottom:22px;
+margin-bottom:18px;
 }
 
 .group label{
 display:block;
-margin-bottom:10px;
-font-size:15px;
+margin-bottom:8px;
+font-size:14px;
 font-weight:700;
 }
 
 .group input{
 width:100%;
-padding:18px;
-border-radius:18px;
+padding:16px;
+border-radius:16px;
 border:1px solid var(--border);
 background:#f8fafc;
-font-size:16px;
+font-size:15px;
 outline:none;
 transition:.3s;
 }
@@ -304,8 +297,8 @@ font-size:14px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-top:12px;
-margin-bottom:18px;
+margin-top:10px;
+margin-bottom:16px;
 }
 
 .remember-box{
@@ -325,8 +318,8 @@ color:#64748b;
 
 .forgot-link{
 text-align:right;
-margin-top:-8px;
-margin-bottom:18px;
+margin-top:-5px;
+margin-bottom:16px;
 }
 
 .forgot-link a{
@@ -339,9 +332,9 @@ cursor:pointer;
 
 .login-btn{
 width:100%;
-padding:20px;
+padding:18px;
 border:none;
-border-radius:20px;
+border-radius:18px;
 background:
 linear-gradient(
 135deg,
@@ -349,10 +342,10 @@ linear-gradient(
 #dc2626
 );
 color:white;
-font-size:18px;
+font-size:17px;
 font-weight:700;
 cursor:pointer;
-margin-top:15px;
+margin-top:12px;
 transition:.3s;
 }
 
@@ -372,38 +365,38 @@ linear-gradient(
 
 .message{
 display:none;
-padding:18px;
-border-radius:18px;
-margin-bottom:20px;
+padding:16px;
+border-radius:16px;
+margin-bottom:18px;
 font-weight:700;
 text-align:center;
 }
 
 .security-box{
-margin-top:25px;
-padding:18px;
-border-radius:20px;
+margin-top:22px;
+padding:16px;
+border-radius:18px;
 background:#f8fafc;
 border:1px solid #e2e8f0;
 display:flex;
 align-items:center;
-gap:15px;
+gap:14px;
 }
 
 .security-icon{
-width:55px;
-height:55px;
+width:50px;
+height:50px;
 border-radius:16px;
 background:#dbeafe;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:24px;
+font-size:22px;
 }
 
 .security-box h4{
 font-size:15px;
-margin-bottom:5px;
+margin-bottom:4px;
 color:#0f172a;
 }
 
@@ -414,137 +407,10 @@ line-height:20px;
 }
 
 .footer{
-margin-top:35px;
+margin-top:28px;
 text-align:center;
 font-size:14px;
 color:#64748b;
-}
-
-/* =====================================================
-LOADER
-===================================================== */
-
-.loader{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(255,255,255,.7);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999999;
-}
-
-.spinner{
-width:80px;
-height:80px;
-border:8px solid #dbeafe;
-border-top:8px solid #ef4444;
-border-radius:50%;
-animation:spin 1s linear infinite;
-}
-
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
-}
-
-/* =====================================================
-OTP MODAL
-===================================================== */
-
-.otp-modal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.55);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999999;
-padding:20px;
-}
-
-.otp-box{
-width:100%;
-max-width:430px;
-background:white;
-border-radius:28px;
-padding:35px;
-animation:popup .25s ease;
-box-shadow:0 25px 60px rgba(0,0,0,.25);
-}
-
-@keyframes popup{
-
-from{
-transform:scale(.8);
-opacity:0;
-}
-
-to{
-transform:scale(1);
-opacity:1;
-}
-
-}
-
-.otp-header{
-text-align:center;
-margin-bottom:25px;
-}
-
-.otp-header h2{
-font-size:28px;
-margin-bottom:10px;
-color:#0f172a;
-}
-
-.otp-header p{
-color:#64748b;
-font-size:15px;
-}
-
-.otp-box input{
-width:100%;
-padding:18px;
-border-radius:18px;
-border:1px solid #cbd5e1;
-background:#f8fafc;
-margin-bottom:18px;
-font-size:16px;
-outline:none;
-}
-
-.otp-box button{
-width:100%;
-padding:18px;
-border:none;
-border-radius:18px;
-background:
-linear-gradient(
-135deg,
-#2563eb,
-#1d4ed8
-);
-color:white;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
-margin-bottom:15px;
-}
-
-.close-otp{
-text-align:center;
-font-size:15px;
-font-weight:700;
-cursor:pointer;
-color:#dc2626;
 }
 
 /* =====================================================
@@ -560,34 +426,108 @@ flex-direction:column;
 .left,
 .right{
 width:100%;
-padding:35px;
+padding:30px;
 }
 
 .feature-grid{
 grid-template-columns:1fr;
 }
 
-.welcome{
+.logo-title h1{
 font-size:42px;
-line-height:48px;
+line-height:44px;
 }
 
-.logo-title h1{
-font-size:44px;
-line-height:48px;
+.welcome{
+font-size:40px;
+line-height:44px;
+}
+
+.big-title{
+font-size:32px;
+line-height:44px;
+}
+
+}
+
+@media(max-width:768px){
+
+body{
+padding:10px;
+}
+
+.container{
+border-radius:20px;
+min-height:auto;
+}
+
+.left,
+.right{
+padding:22px;
+}
+
+.logo-section{
+flex-direction:column;
+text-align:center;
 }
 
 .logo{
-width:90px;
-height:90px;
+width:85px;
+height:85px;
 }
 
 .logo img{
-width:70px;
+width:60px;
+}
+
+.logo-title h1{
+font-size:34px;
+line-height:38px;
+}
+
+.big-title{
+font-size:28px;
+line-height:38px;
+text-align:center;
+}
+
+.description{
+font-size:15px;
+line-height:28px;
+text-align:center;
+}
+
+.welcome{
+font-size:32px;
+line-height:38px;
+text-align:center;
+}
+
+.sub{
+text-align:center;
+font-size:15px;
+}
+
+.line{
+margin:18px auto;
 }
 
 .top-buttons{
 flex-direction:column;
+}
+
+.trust-bar{
+justify-content:center;
+}
+
+.login-btn{
+font-size:15px;
+padding:16px;
+}
+
+.group input{
+padding:15px;
+font-size:14px;
 }
 
 }
@@ -597,78 +537,6 @@ flex-direction:column;
 </head>
 
 <body>
-
-<!-- =====================================================
-LOADER
-===================================================== -->
-
-<div class="loader" id="loader">
-<div class="spinner"></div>
-</div>
-
-<!-- =====================================================
-OTP MODAL
-===================================================== -->
-
-<div class="otp-modal" id="otpModal">
-
-<div class="otp-box">
-
-<div class="otp-header">
-
-<h2>
-🔐 Secure OTP Login
-</h2>
-
-<p>
-Enter your registered mobile number
-</p>
-
-</div>
-
-<input
-type="text"
-id="otpMobile"
-placeholder="Enter Mobile Number">
-
-<button onclick="sendOTP()">
-
-SEND OTP
-
-</button>
-
-<div
-id="otpSection"
-style="display:none">
-
-<input
-type="text"
-id="otpCode"
-placeholder="Enter OTP">
-
-<button onclick="verifyOTP()">
-
-VERIFY OTP
-
-</button>
-
-</div>
-
-<div
-class="close-otp"
-onclick="closeOTPModal()">
-
-✖ Close
-
-</div>
-
-</div>
-
-</div>
-
-<!-- =====================================================
-MAIN CONTAINER
-===================================================== -->
 
 <div class="container">
 
@@ -681,7 +549,9 @@ LEFT SIDE
 <div class="logo-section">
 
 <div class="logo">
+
 <img src="logo.png">
+
 </div>
 
 <div class="logo-title">
@@ -846,7 +716,6 @@ Forgot Password?
 
 <button
 class="login-btn"
-id="loginBtn"
 onclick="loginERP()">
 
 🔐 LOGIN TO ERP
@@ -891,23 +760,30 @@ Your session is encrypted and protected.
 
 <script>
 
-/* =====================================================
-API URL
-===================================================== */
+function goWebsite(){
 
-const API_URL =
-"https://script.google.com/macros/s/AKfycbxYC6C2ltrcupaEexLJlvoJkISnAtgqE2p_o2KUInn1TaFh4IA2hQeq7cC9Q9ceFrOx/exec";
+window.location.href='index.html';
 
-/* =====================================================
-MESSAGE
-===================================================== */
+}
+
+function togglePassword(){
+
+const pass =
+document.getElementById('password');
+
+pass.type =
+pass.type === 'password'
+?
+'text'
+:
+'password';
+
+}
 
 function showMessage(message,type='success'){
 
 const box =
-document.getElementById(
-'messageBox'
-);
+document.getElementById('messageBox');
 
 box.style.display='block';
 
@@ -927,399 +803,32 @@ box.style.color='#166534';
 
 }
 
-/* =====================================================
-LOADER
-===================================================== */
-
-function showLoader(){
-
-document.getElementById(
-'loader'
-).style.display='flex';
-
-}
-
-function hideLoader(){
-
-document.getElementById(
-'loader'
-).style.display='none';
-
-}
-
-/* =====================================================
-SHOW PASSWORD
-===================================================== */
-
-function togglePassword(){
-
-const pass =
-document.getElementById(
-'password'
-);
-
-pass.type =
-pass.type === 'password'
-?
-'text'
-:
-'password';
-
-}
-
-/* =====================================================
-LOGIN ENGINE
-===================================================== */
-
-async function loginERP(){
-
-const loginBtn =
-document.getElementById(
-'loginBtn'
-);
-
-const loginId =
-document.getElementById(
-'loginId'
-).value.trim();
-
-const password =
-document.getElementById(
-'password'
-).value.trim();
-
-if(!loginId || !password){
-
-showMessage(
-'ENTER LOGIN DETAILS',
-'error'
-);
-
-return;
-
-}
-
-showLoader();
-
-loginBtn.disabled = true;
-
-loginBtn.innerHTML =
-'PLEASE WAIT...';
-
-try{
-
-const response =
-await fetch(
-
-API_URL,
-
-{
-
-method:'POST',
-
-body:JSON.stringify({
-
-action:'LOGIN',
-
-loginId:loginId,
-
-password:password
-
-})
-
-}
-
-);
-
-const result =
-await response.json();
-
-hideLoader();
-
-loginBtn.disabled = false;
-
-loginBtn.innerHTML =
-'🔐 LOGIN TO ERP';
-
-if(
-
-result.success === true
-
-&&
-
-result.status === 'success'
-
-){
-
-localStorage.setItem(
-'ERP_LOGIN_STATUS',
-'ACTIVE'
-);
-
-localStorage.setItem(
-'ERP_USER',
-JSON.stringify(result.user)
-);
-
-localStorage.setItem(
-'ERP_ROLE',
-result.user.role
-);
+function loginERP(){
 
 showMessage(
 'LOGIN SUCCESS'
 );
 
-const role =
-String(
-result.user.role || ''
-)
-.toUpperCase();
-
 setTimeout(function(){
 
-if(role === 'SUPER ADMIN'){
-
-window.location.href =
-'super-admin-dashboard.html';
-
-}
-
-else if(role === 'ADMIN'){
-
-window.location.href =
-'admin-dashboard.html';
-
-}
-
-else if(role === 'OWNER'){
-
-window.location.href =
-'owner-dashboard.html';
-
-}
-
-else if(role === 'MANAGER'){
-
-window.location.href =
-'manager-dashboard.html';
-
-}
-
-else if(role === 'CHEF'){
-
-window.location.href =
-'kitchen-dashboard.html';
-
-}
-
-else if(role === 'CASHIER'){
-
-window.location.href =
-'pos-dashboard.html';
-
-}
-
-else{
-
-window.location.href =
-'dashboard.html';
-
-}
+window.location.href='dashboard.html';
 
 },1000);
 
 }
-
-else{
-
-showMessage(
-result.message || 'INVALID LOGIN',
-'error'
-);
-
-}
-
-}
-
-catch(error){
-
-hideLoader();
-
-loginBtn.disabled = false;
-
-loginBtn.innerHTML =
-'🔐 LOGIN TO ERP';
-
-showMessage(
-'SERVER ERROR',
-'error'
-);
-
-}
-
-}
-
-/* =====================================================
-OTP MODAL
-===================================================== */
 
 function openOTPLogin(){
 
-document.getElementById(
-'otpModal'
-).style.display='flex';
-
-}
-
-function closeOTPModal(){
-
-document.getElementById(
-'otpModal'
-).style.display='none';
-
-}
-
-function sendOTP(){
-
-const mobile =
-document.getElementById(
-'otpMobile'
-).value.trim();
-
-if(!mobile){
-
 showMessage(
-'ENTER MOBILE NUMBER',
-'error'
-);
-
-return;
-
-}
-
-showMessage(
-'OTP SENT SUCCESSFULLY'
-);
-
-document.getElementById(
-'otpSection'
-).style.display='block';
-
-}
-
-function verifyOTP(){
-
-const otp =
-document.getElementById(
-'otpCode'
-).value.trim();
-
-if(otp === '123456'){
-
-localStorage.setItem(
-'ERP_LOGIN_STATUS',
-'ACTIVE'
-);
-
-localStorage.setItem(
-'ERP_ROLE',
-'USER'
-);
-
-showMessage(
-'OTP LOGIN SUCCESS'
-);
-
-setTimeout(function(){
-
-window.location.href =
-'dashboard.html';
-
-},1000);
-
-}
-
-else{
-
-showMessage(
-'INVALID OTP',
-'error'
+'OTP LOGIN MODULE READY'
 );
 
 }
-
-}
-
-/* =====================================================
-FORGOT PASSWORD
-===================================================== */
 
 function openForgotPassword(){
 
-const mobile =
-prompt(
-'ENTER REGISTERED MOBILE NUMBER'
-);
-
-if(!mobile){
-
 showMessage(
-'MOBILE NUMBER REQUIRED',
-'error'
-);
-
-return;
-
-}
-
-showMessage(
-'RESET LINK SENT'
-);
-
-}
-
-/* =====================================================
-WEBSITE
-===================================================== */
-
-function goWebsite(){
-
-window.open(
-'https://nextgenbalajierp.netlify.app/',
-'_blank'
-);
-
-}
-
-/* =====================================================
-ENTER KEY
-===================================================== */
-
-document.addEventListener(
-
-'keypress',
-
-function(e){
-
-if(e.key === 'Enter'){
-
-loginERP();
-
-}
-
-}
-
-);
-
-/* =====================================================
-SERVICE WORKER
-===================================================== */
-
-if('serviceWorker' in navigator){
-
-navigator.serviceWorker.register(
-'/service-worker.js'
+'FORGOT PASSWORD MODULE READY'
 );
 
 }
@@ -1328,3 +837,4 @@ navigator.serviceWorker.register(
 
 </body>
 </html>
+```
