@@ -1,154 +1,334 @@
-/* =========================================================
-BALAJI NEXTGEN ERP
-api-engine.js
-FINAL LOGIN API ENGINE
-========================================================= */
+/********************************************************
+ BALAJI NEXTGEN ERP
+ CENTRAL API ENGINE
+ FILE:
+ js/api/api-engine.js
+********************************************************/
 
-/* =========================================================
-LIVE API URL
-========================================================= */
+/* =====================================================
+GLOBAL ERP API OBJECT
+===================================================== */
 
-const ERP_API =
+const ERP_API = {
 
-'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+AUTH : null,
 
-/* =========================================================
-SHOW MESSAGE
-========================================================= */
+CORE : null,
 
-function showMessage(message,type='info'){
+FRONTEND : null,
 
-if(type === 'success'){
+WEBSITE : null,
 
-alert(message);
+LOADED : false
 
-}
-else if(type === 'error'){
+};
 
-alert(message);
+/* =====================================================
+MASTER CONTROL SHEET
+===================================================== */
 
-}
-else{
+const ERP_REGISTRY_URL =
+'https://docs.google.com/spreadsheets/d/1FuNJ_XejE2ekYTnk71wXVZ79hRJgu7pmIA6fuE-Iu7I/gviz/tq?tqx=out:json&sheet=API_DEPLOYMENT_REGISTRY';
 
-alert(message);
+/* =====================================================
+LOAD ERP APIS
+===================================================== */
 
-}
-
-}
-
-/* =========================================================
-LOADING BUTTON
-========================================================= */
-
-function setButtonLoading(button,text){
-
-button.disabled = true;
-
-button.innerHTML = text;
-
-}
-
-/* =========================================================
-RESET BUTTON
-========================================================= */
-
-function resetButton(button,text){
-
-button.disabled = false;
-
-button.innerHTML = text;
-
-}
-
-/* =========================================================
-LOGIN ERP
-========================================================= */
-
-async function loginERP(){
+async function loadERPAPI(){
 
 try{
 
-/* =====================================================
-GET INPUTS
-===================================================== */
-
-const username =
-document
-.getElementById('username')
-.value
-.trim();
-
-const password =
-document
-.getElementById('password')
-.value
-.trim();
-
-/* =====================================================
-VALIDATION
-===================================================== */
-
-if(!username || !password){
-
-showMessage(
-'ENTER LOGIN DETAILS',
-'error'
+console.log(
+'LOADING ERP API REGISTRY...'
 );
+
+/* =====================================================
+FETCH REGISTRY
+===================================================== */
+
+const response =
+await fetch(
+ERP_REGISTRY_URL
+);
+
+const text =
+await response.text();
+
+/* =====================================================
+PARSE GOOGLE GVIZ
+===================================================== */
+
+const json =
+JSON.parse(
+text.substring(
+47,
+text.length - 2
+)
+);
+
+/* =====================================================
+GET ROWS
+===================================================== */
+
+const rows =
+json.table.rows;
+
+/* =====================================================
+LOOP ROWS
+===================================================== */
+
+rows.forEach(row => {
+
+const APP_NAME =
+row.c[0]
+?
+row.c[0].v
+:
+'';
+
+const WEBAPP_URL =
+row.c[1]
+?
+row.c[1].v
+:
+'';
+
+const STATUS =
+row.c[3]
+?
+row.c[3].v
+:
+'';
+
+/* =====================================================
+ONLY ACTIVE
+===================================================== */
+
+if(STATUS !== 'ACTIVE'){
 
 return;
 
 }
 
 /* =====================================================
-BUTTON
+MAP APIS
 ===================================================== */
 
-const loginBtn =
-document.querySelector('.login-btn');
+if(APP_NAME === 'V2_AUTH'){
 
-setButtonLoading(
-loginBtn,
-'CHECKING LOGIN...'
-);
-
-/* =====================================================
-API REQUEST
-===================================================== */
-
-const response =
-
-await fetch(
-
-ERP_API,
-
-{
-
-method:'POST',
-
-body:JSON.stringify({
-
-action:'LOGIN',
-
-username:username,
-
-password:password
-
-})
+ERP_API.AUTH =
+WEBAPP_URL;
 
 }
 
-);
+if(APP_NAME === 'V2_CORE'){
+
+ERP_API.CORE =
+WEBAPP_URL;
+
+}
+
+if(APP_NAME === 'V2_FRONTEND'){
+
+ERP_API.FRONTEND =
+WEBAPP_URL;
+
+}
+
+if(APP_NAME === 'Webside'){
+
+ERP_API.WEBSITE =
+WEBAPP_URL;
+
+}
+
+});
 
 /* =====================================================
-GET RESPONSE
+CHECK
 ===================================================== */
 
-const result =
-await response.json();
+if(
+ERP_API.AUTH
+&&
+ERP_API.CORE
+){
+
+ERP_API.LOADED = true;
+
+console.log(
+'AUTH API FOUND:',
+ERP_API.AUTH
+);
+
+console.log(
+'CORE API FOUND:',
+ERP_API.CORE
+);
+
+}else{
+
+console.log(
+'API NOT CONNECTED'
+);
+
+}
+
+/* =====================================================
+RETURN
+===================================================== */
+
+return ERP_API;
+
+}catch(error){
+
+console.log(
+'API ENGINE ERROR:',
+error
+);
+
+return {
+
+status : 'error',
+
+message : 'API ENGINE FAILED'
+
+};
+
+}
+
+}
+
+/* =====================================================
+SAFE API CALL
+===================================================== */
+
+async function callERPAPI(
+url,
+payload = {}
+){
+
+try{
+
+/* =====================================================
+CHECK URL
+===================================================== */
+
+if(!url){
+
+return {
+
+status : 'error',
+
+message : 'API URL MISSING'
+
+};
+
+}
+
+/* =====================================================
+FETCH API
+===================================================== */
+
+const response =
+await fetch(url,{
+
+method : 'POST',
+
+mode : 'cors',
+
+headers : {
+'Content-Type':'text/plain'
+},
+
+body : JSON.stringify(
+payload
+)
+
+});
+
+/* =====================================================
+TEXT RESPONSE
+===================================================== */
+
+const text =
+await response.text();
 
 console.log(
 'API RESPONSE:',
-result
+text
+);
+
+/* =====================================================
+PARSE JSON
+===================================================== */
+
+const json =
+JSON.parse(text);
+
+return json;
+
+}catch(error){
+
+console.log(
+'API CALL ERROR:',
+error
+);
+
+return {
+
+status : 'error',
+
+message : 'SERVER CONNECTION FAILED',
+
+error : String(error)
+
+};
+
+}
+
+}
+
+/* =====================================================
+LOGIN API
+===================================================== */
+
+async function loginERP(
+loginId,
+password
+){
+
+try{
+
+/* =====================================================
+LOAD APIS
+===================================================== */
+
+if(!ERP_API.LOADED){
+
+await loadERPAPI();
+
+}
+
+/* =====================================================
+LOGIN CALL
+===================================================== */
+
+const result =
+await callERPAPI(
+
+ERP_API.AUTH,
+
+{
+
+action : 'LOGIN',
+
+loginId : loginId,
+
+password : password
+
+}
+
 );
 
 /* =====================================================
@@ -156,100 +336,73 @@ SUCCESS
 ===================================================== */
 
 if(
-
-result.success === true
-
-||
-
-result.status === 'success'
-
+result.data
+&&
+result.data.status === 'success'
 ){
 
-/* =================================================
-SAVE USER
-================================================= */
+/* =====================================================
+SAVE SESSION
+===================================================== */
 
 localStorage.setItem(
 
 'ERP_USER',
 
 JSON.stringify(
-result.data || result.user
+result.data.user
 )
 
 );
 
-/* =================================================
-SAVE TOKEN
-================================================= */
+localStorage.setItem(
+
+'ERP_SESSION',
+
+result.data.sessionToken
+
+);
 
 localStorage.setItem(
 
-'ERP_TOKEN',
+'ERP_ROLE',
 
-result.token || ''
+result.data.user.role
 
 );
 
-/* =================================================
-MESSAGE
-================================================= */
-
-showMessage(
-'LOGIN SUCCESS',
-'success'
+console.log(
+'LOGIN SUCCESS'
 );
 
-/* =================================================
+/* =====================================================
 OPEN DASHBOARD
-================================================= */
-
-setTimeout(function(){
+===================================================== */
 
 window.location.href =
 'dashboard.html';
 
-},1000);
+return;
 
 }
 
 /* =====================================================
-INVALID LOGIN
+FAILED
 ===================================================== */
-
-else{
 
 showMessage(
 
-result.message ||
-
-'Invalid Username or Password',
+result.data
+?
+result.data.message
+:
+'LOGIN FAILED',
 
 'error'
 
 );
 
-}
-
-/* =====================================================
-RESET BUTTON
-===================================================== */
-
-resetButton(
-
-loginBtn,
-
-'🔐 LOGIN TO ERP'
-
-);
-
-}
-
-/* =====================================================
-ERROR
-===================================================== */
-
-catch(error){
+}catch(error){
 
 console.log(
 'LOGIN ENGINE ERROR:',
@@ -257,66 +410,165 @@ error
 );
 
 showMessage(
-
-'SERVER CONNECTION FAILED',
-
+'SERVER ERROR',
 'error'
-
-);
-
-const loginBtn =
-document.querySelector('.login-btn');
-
-resetButton(
-
-loginBtn,
-
-'🔐 LOGIN TO ERP'
-
 );
 
 }
 
 }
 
-/* =========================================================
-LOGOUT ERP
-========================================================= */
+/* =====================================================
+OTP SEND
+===================================================== */
 
-function logoutERP(){
+async function sendOTP(
+mobile
+){
 
-localStorage.clear();
+try{
+
+if(!ERP_API.LOADED){
+
+await loadERPAPI();
+
+}
+
+const result =
+await callERPAPI(
+
+ERP_API.AUTH,
+
+{
+
+action : 'SEND_OTP',
+
+loginId : mobile
+
+}
+
+);
+
+console.log(
+'OTP RESULT:',
+result
+);
+
+if(
+result.data
+&&
+result.data.status === 'success'
+){
+
+showMessage(
+'OTP SENT SUCCESSFULLY',
+'success'
+);
+
+}else{
+
+showMessage(
+'OTP SEND FAILED',
+'error'
+);
+
+}
+
+}catch(error){
+
+console.log(error);
+
+showMessage(
+'SERVER ERROR',
+'error'
+);
+
+}
+
+}
+
+/* =====================================================
+VERIFY OTP
+===================================================== */
+
+async function verifyOTP(
+mobile,
+otp
+){
+
+try{
+
+if(!ERP_API.LOADED){
+
+await loadERPAPI();
+
+}
+
+const result =
+await callERPAPI(
+
+ERP_API.AUTH,
+
+{
+
+action : 'VERIFY_OTP',
+
+loginId : mobile,
+
+otp : otp
+
+}
+
+);
+
+console.log(
+'VERIFY OTP:',
+result
+);
+
+if(
+result.data
+&&
+result.data.status === 'success'
+){
+
+localStorage.setItem(
+'ERP_USER',
+JSON.stringify(
+result.data.user
+)
+);
 
 window.location.href =
-'client-login.html';
+'dashboard.html';
 
-}
+}else{
 
-/* =========================================================
-CHECK LOGIN
-========================================================= */
-
-function checkLoginSession(){
-
-const user =
-localStorage.getItem(
-'ERP_USER'
+showMessage(
+'INVALID OTP',
+'error'
 );
 
-if(!user){
+}
 
-window.location.href =
-'client-login.html';
+}catch(error){
+
+console.log(error);
+
+showMessage(
+'SERVER ERROR',
+'error'
+);
 
 }
 
 }
 
-/* =========================================================
+/* =====================================================
 GET USER
-========================================================= */
+===================================================== */
 
-function getCurrentUser(){
+function getERPUser(){
 
 const user =
 localStorage.getItem(
@@ -333,19 +585,50 @@ return null;
 
 }
 
-/* =========================================================
-AUTO LOAD
-========================================================= */
+/* =====================================================
+CHECK SESSION
+===================================================== */
+
+function checkERPSession(){
+
+const session =
+localStorage.getItem(
+'ERP_SESSION'
+);
+
+if(!session){
+
+window.location.href =
+'client-login.html';
+
+}
+
+}
+
+/* =====================================================
+LOGOUT
+===================================================== */
+
+function logoutERP(){
+
+localStorage.clear();
+
+window.location.href =
+'client-login.html';
+
+}
+
+/* =====================================================
+AUTO LOAD API
+===================================================== */
 
 window.addEventListener(
 
 'load',
 
-function(){
+async function(){
 
-console.log(
-'BALAJI NEXTGEN API ENGINE LOADED'
-);
+await loadERPAPI();
 
 }
 
