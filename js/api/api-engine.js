@@ -3,7 +3,6 @@
  CENTRAL API ENGINE
  FILE:
  js/api/api-engine.js
- FINAL FIXED VERSION
 ********************************************************/
 
 /* =====================================================
@@ -43,6 +42,10 @@ console.log(
 'LOADING ERP API REGISTRY...'
 );
 
+/* =====================================================
+FETCH REGISTRY
+===================================================== */
+
 const response =
 await fetch(
 ERP_REGISTRY_URL
@@ -50,6 +53,10 @@ ERP_REGISTRY_URL
 
 const text =
 await response.text();
+
+/* =====================================================
+PARSE GOOGLE GVIZ
+===================================================== */
 
 const json =
 JSON.parse(
@@ -59,11 +66,15 @@ text.length - 2
 )
 );
 
+/* =====================================================
+GET ROWS
+===================================================== */
+
 const rows =
 json.table.rows;
 
 /* =====================================================
-LOOP REGISTRY
+LOOP ROWS
 ===================================================== */
 
 rows.forEach(row => {
@@ -89,6 +100,10 @@ row.c[3].v
 :
 '';
 
+/* =====================================================
+ONLY ACTIVE
+===================================================== */
+
 if(STATUS !== 'ACTIVE'){
 
 return;
@@ -96,7 +111,7 @@ return;
 }
 
 /* =====================================================
-MAP APIs
+MAP APIS
 ===================================================== */
 
 if(APP_NAME === 'V2_AUTH'){
@@ -130,7 +145,7 @@ WEBAPP_URL;
 });
 
 /* =====================================================
-CHECK LOADED
+CHECK
 ===================================================== */
 
 if(
@@ -142,7 +157,13 @@ ERP_API.CORE
 ERP_API.LOADED = true;
 
 console.log(
-'ERP APIs Loaded Successfully'
+'AUTH API FOUND:',
+ERP_API.AUTH
+);
+
+console.log(
+'CORE API FOUND:',
+ERP_API.CORE
 );
 
 }else{
@@ -152,6 +173,10 @@ console.log(
 );
 
 }
+
+/* =====================================================
+RETURN
+===================================================== */
 
 return ERP_API;
 
@@ -164,7 +189,7 @@ error
 
 return {
 
-success : false,
+status : 'error',
 
 message : 'API ENGINE FAILED'
 
@@ -185,17 +210,25 @@ payload = {}
 
 try{
 
+/* =====================================================
+CHECK URL
+===================================================== */
+
 if(!url){
 
 return {
 
-success : false,
+status : 'error',
 
 message : 'API URL MISSING'
 
 };
 
 }
+
+/* =====================================================
+FETCH API
+===================================================== */
 
 const response =
 await fetch(url,{
@@ -213,6 +246,10 @@ payload
 )
 
 });
+
+/* =====================================================
+TEXT RESPONSE
+===================================================== */
 
 const text =
 await response.text();
@@ -240,7 +277,7 @@ error
 
 return {
 
-success : false,
+status : 'error',
 
 message : 'SERVER CONNECTION FAILED',
 
@@ -253,53 +290,18 @@ error : String(error)
 }
 
 /* =====================================================
-LOGIN ERP
+LOGIN API
 ===================================================== */
 
-async function loginERP(){
+async function loginERP(
+loginId,
+password
+){
 
 try{
 
 /* =====================================================
-GET FORM DATA
-===================================================== */
-
-const username =
-document
-.getElementById(
-'username'
-)
-.value
-.trim();
-
-const password =
-document
-.getElementById(
-'password'
-)
-.value
-.trim();
-
-/* =====================================================
-VALIDATION
-===================================================== */
-
-if(
-!username
-||
-!password
-){
-
-alert(
-'Enter Username and Password'
-);
-
-return;
-
-}
-
-/* =====================================================
-LOAD APIs
+LOAD APIS
 ===================================================== */
 
 if(!ERP_API.LOADED){
@@ -309,7 +311,7 @@ await loadERPAPI();
 }
 
 /* =====================================================
-LOGIN API CALL
+LOGIN CALL
 ===================================================== */
 
 const result =
@@ -321,7 +323,7 @@ ERP_API.AUTH,
 
 action : 'LOGIN',
 
-username : username,
+loginId : loginId,
 
 password : password
 
@@ -329,19 +331,18 @@ password : password
 
 );
 
-console.log(
-'LOGIN RESULT:',
-result
-);
-
 /* =====================================================
-SUCCESS LOGIN
+SUCCESS
 ===================================================== */
 
-if(result.success === true){
+if(
+result.data
+&&
+result.data.status === 'success'
+){
 
 /* =====================================================
-SAVE USER SESSION
+SAVE SESSION
 ===================================================== */
 
 localStorage.setItem(
@@ -349,24 +350,28 @@ localStorage.setItem(
 'ERP_USER',
 
 JSON.stringify(
-result.data
+result.data.user
 )
 
 );
 
 localStorage.setItem(
 
-'ERP_LOGIN',
+'ERP_SESSION',
 
-'ACTIVE'
+result.data.sessionToken
+
+);
+
+localStorage.setItem(
+
+'ERP_ROLE',
+
+result.data.user.role
 
 );
 
 console.log(
-'LOGIN SUCCESS'
-);
-
-alert(
 'LOGIN SUCCESS'
 );
 
@@ -375,23 +380,25 @@ OPEN DASHBOARD
 ===================================================== */
 
 window.location.href =
-'/dashboard.html';
+'dashboard.html';
 
 return;
 
 }
 
 /* =====================================================
-FAILED LOGIN
+FAILED
 ===================================================== */
 
-alert(
+showMessage(
 
-result.message
+result.data
 ?
-result.message
+result.data.message
 :
-'Invalid Username or Password'
+'LOGIN FAILED',
+
+'error'
 
 );
 
@@ -402,8 +409,9 @@ console.log(
 error
 );
 
-alert(
-'SERVER ERROR'
+showMessage(
+'SERVER ERROR',
+'error'
 );
 
 }
@@ -411,7 +419,7 @@ alert(
 }
 
 /* =====================================================
-SEND OTP
+OTP SEND
 ===================================================== */
 
 async function sendOTP(
@@ -446,16 +454,22 @@ console.log(
 result
 );
 
-if(result.success === true){
+if(
+result.data
+&&
+result.data.status === 'success'
+){
 
-alert(
-'OTP SENT SUCCESSFULLY'
+showMessage(
+'OTP SENT SUCCESSFULLY',
+'success'
 );
 
 }else{
 
-alert(
-'OTP SEND FAILED'
+showMessage(
+'OTP SEND FAILED',
+'error'
 );
 
 }
@@ -464,8 +478,9 @@ alert(
 
 console.log(error);
 
-alert(
-'SERVER ERROR'
+showMessage(
+'SERVER ERROR',
+'error'
 );
 
 }
@@ -511,25 +526,27 @@ console.log(
 result
 );
 
-if(result.success === true){
+if(
+result.data
+&&
+result.data.status === 'success'
+){
 
 localStorage.setItem(
-
 'ERP_USER',
-
 JSON.stringify(
-result.data
+result.data.user
 )
-
 );
 
 window.location.href =
-'/dashboard.html';
+'dashboard.html';
 
 }else{
 
-alert(
-'INVALID OTP'
+showMessage(
+'INVALID OTP',
+'error'
 );
 
 }
@@ -538,8 +555,9 @@ alert(
 
 console.log(error);
 
-alert(
-'SERVER ERROR'
+showMessage(
+'SERVER ERROR',
+'error'
 );
 
 }
@@ -575,20 +593,20 @@ function checkERPSession(){
 
 const session =
 localStorage.getItem(
-'ERP_LOGIN'
+'ERP_SESSION'
 );
 
 if(!session){
 
 window.location.href =
-'/client-login.html';
+'client-login.html';
 
 }
 
 }
 
 /* =====================================================
-LOGOUT ERP
+LOGOUT
 ===================================================== */
 
 function logoutERP(){
@@ -596,20 +614,7 @@ function logoutERP(){
 localStorage.clear();
 
 window.location.href =
-'/client-login.html';
-
-}
-
-/* =====================================================
-SHOW MESSAGE
-===================================================== */
-
-function showMessage(
-message,
-type = 'info'
-){
-
-alert(message);
+'client-login.html';
 
 }
 
@@ -627,8 +632,4 @@ await loadERPAPI();
 
 }
 
-);
-
-console.log(
-'BALAJI NEXTGEN API ENGINE LOADED'
 );
